@@ -1,3 +1,10 @@
+import { RegisterForm } from '../../../features/auth';
+import { AuthLayout } from '../../../widgets/authLayout';
+
 export const RegisterPage = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <AuthLayout>
+      <RegisterForm />
+    </AuthLayout>
+  );
 };

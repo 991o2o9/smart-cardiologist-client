@@ -12,5 +12,6 @@ main {
 
 html,
 body {
-  background-color: rgb(170, 170, 255);
+  background-color: var(--white);
+  font-family: 'Open Sans', sans-serif;
 }

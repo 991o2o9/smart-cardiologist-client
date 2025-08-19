@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+$breakpoints: (
+  mobile: 530px,
+  tablet: 1024px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if meta.type-of($breakpoint) == 'string' {
+    @media screen and (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else if meta.type-of($breakpoint) == 'number' {
+    @media screen and (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}

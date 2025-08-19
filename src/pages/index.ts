@@ -41,3 +41,9 @@ export const ProfilePage = lazy(() =>
     default: module.ProfilePage,
   })),
 );
+
+export const ActivationCodePage = lazy(() =>
+  import('./activationCode/view/ActivationCodePage').then((module) => ({
+    default: module.ActivationCodePage,
+  })),
+);

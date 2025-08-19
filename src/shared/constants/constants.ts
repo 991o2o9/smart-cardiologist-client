@@ -8,6 +8,7 @@ export const paths = {
   prediction: '/prediction',
   aiChat: '/ai-chat',
   profile: '/profile',
+  activation: '/activation-email',
 };
 
 export const tokens = {

@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { BASE_URL, tokens } from '../constants/constants';
+import { BASE_URL, tokens } from '../../constants/constants';
 
 interface RefreshTokenResponse {
   access_token: string;
@@ -40,7 +40,7 @@ $authApi.interceptors.response.use(
   async (error) => {
     const ogRequest = error.config as CustomAxiosRequestConfig;
 
-    const { useAuth } = await import('../hooks/useAuth');
+    const { useAuth } = await import('../../hooks/useAuth');
     const { logout } = useAuth.getState();
 
     if (error.response?.status === 401 && ogRequest && !ogRequest._isRetry) {

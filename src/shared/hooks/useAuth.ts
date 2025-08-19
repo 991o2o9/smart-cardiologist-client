@@ -1,7 +1,8 @@
-import axios from 'axios';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import axios, { AxiosError } from 'axios';
 import { create } from 'zustand';
 import { BASE_URL, tokens } from '../constants/constants';
-import { $authApi } from '../lib/requester';
+import { $authApi } from '../lib/requester/requester';
 
 interface RegisterData {
   email: string;
@@ -57,21 +58,32 @@ interface UserData {
   created_at: string;
 }
 
+interface ActivationStatus {
+  email: string;
+  is_activated: boolean;
+  exists: boolean;
+}
+
 interface AuthState {
   isAuth: boolean;
   isLoggingOut: boolean;
   isLoadingUser: boolean;
   user: UserData | null;
 
+  justRegistered: boolean;
+  setJustRegistered: (value: boolean) => void;
+
+  setTokens: (accessToken: string, refreshToken: string) => void;
   setAuth: (isAuth: boolean) => void;
   register: (data: RegisterData) => Promise<ApiResponse>;
   activateAccount: (data: ActivateAccountData) => Promise<ApiResponse>;
   resendActivationCode: (data: ResendCodeData) => Promise<ApiResponse>;
   login: (data: LoginData) => Promise<void>;
-  logout: () => Promise<void>;
+  logout: () => void;
   checkAuth: (refreshToken: string) => Promise<LoginResponse>;
   fetchUserData: () => Promise<void>;
   setUser: (user: UserData) => void;
+  checkActivationStatus: (email: string) => Promise<ActivationStatus>;
 }
 
 export const useAuth = create<AuthState>((set, get) => ({
@@ -79,6 +91,9 @@ export const useAuth = create<AuthState>((set, get) => ({
   isLoggingOut: false,
   isLoadingUser: false,
   user: null,
+  justRegistered: false,
+
+  setJustRegistered: (value: boolean) => set({ justRegistered: value }),
 
   setUser: (user: UserData) => set({ user }),
 
@@ -91,6 +106,12 @@ export const useAuth = create<AuthState>((set, get) => ({
     }
   },
 
+  setTokens: (accessToken: string, refreshToken: string) => {
+    localStorage.setItem(tokens.access, accessToken);
+    localStorage.setItem(tokens.refresh, refreshToken);
+    set({ isAuth: true });
+  },
+
   register: async (data: RegisterData): Promise<ApiResponse> => {
     try {
       const response = await axios.post<ApiResponse>(
@@ -98,8 +119,9 @@ export const useAuth = create<AuthState>((set, get) => ({
         data,
       );
       return response.data;
-    } catch (error) {
-      return Promise.reject(error);
+    } catch (error: any) {
+      const err = error as AxiosError<ApiResponse>;
+      return Promise.reject(err);
     }
   },
 
@@ -110,8 +132,9 @@ export const useAuth = create<AuthState>((set, get) => ({
         data,
       );
       return response.data;
-    } catch (error) {
-      return Promise.reject(error);
+    } catch (error: any) {
+      const err = error as AxiosError<ApiResponse>;
+      return Promise.reject(err);
     }
   },
 
@@ -122,8 +145,27 @@ export const useAuth = create<AuthState>((set, get) => ({
         data,
       );
       return response.data;
-    } catch (error) {
-      return Promise.reject(error);
+    } catch (error: any) {
+      const err = error as AxiosError<ApiResponse>;
+      return Promise.reject(err);
+    }
+  },
+
+  checkActivationStatus: async (email: string): Promise<ActivationStatus> => {
+    try {
+      const response = await axios.get<{
+        exists: boolean;
+        is_activated: boolean;
+      }>(`${BASE_URL}/auth/status`, { params: { email } });
+
+      return {
+        email,
+        exists: response.data.exists ?? false,
+        is_activated: response.data.is_activated ?? false,
+      };
+    } catch (error: any) {
+      console.error('Error checking activation status:', error);
+      return Promise.reject(error as AxiosError);
     }
   },
 
@@ -133,7 +175,6 @@ export const useAuth = create<AuthState>((set, get) => ({
         `${BASE_URL}/auth/login`,
         data,
       );
-
       const { access_token, refresh_token } = response.data;
 
       localStorage.setItem(tokens.access, access_token);
@@ -144,28 +185,25 @@ export const useAuth = create<AuthState>((set, get) => ({
       try {
         await get().fetchUserData();
       } catch (error) {
-        console.error('Ошибка при получении данных пользователя:', error);
+        console.error('Error fetching user data:', error);
       }
-    } catch (error) {
-      return Promise.reject(error);
+    } catch (error: any) {
+      const err = error as AxiosError<LoginResponse>;
+      return Promise.reject(err);
     }
   },
 
-  logout: async (): Promise<void> => {
-    const state = get();
-    if (state.isLoggingOut) return;
+  logout: () => {
+    set({ isAuth: false, user: null, isLoggingOut: true });
+    localStorage.removeItem(tokens.access);
+    localStorage.removeItem(tokens.refresh);
+    localStorage.removeItem('user');
 
-    set({ isLoggingOut: true });
+    $authApi
+      .post('/auth/logout')
+      .catch((err) => console.error('Error during logout:', err));
 
-    try {
-      await $authApi.post<ApiResponse>('/auth/logout');
-    } catch (error) {
-      console.error('Ошибка при выходе:', error);
-    } finally {
-      localStorage.removeItem(tokens.access);
-      localStorage.removeItem(tokens.refresh);
-      set({ isAuth: false, user: null, isLoggingOut: false });
-    }
+    set({ isLoggingOut: false });
   },
 
   checkAuth: async (refreshToken: string): Promise<LoginResponse> => {
@@ -187,13 +225,14 @@ export const useAuth = create<AuthState>((set, get) => ({
       try {
         await get().fetchUserData();
       } catch (error) {
-        console.error('Ошибка при получении данных пользователя:', error);
+        console.error('Error fetching user data:', error);
       }
 
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       get().setAuth(false);
-      return Promise.reject(error);
+      const err = error as AxiosError<RefreshTokenResponse>;
+      return Promise.reject(err);
     }
   },
 
@@ -204,7 +243,7 @@ export const useAuth = create<AuthState>((set, get) => ({
       const userData = response.data;
       set({ user: userData });
     } catch (error) {
-      console.error('Ошибка при получении данных пользователя:', error);
+      console.error('Error fetching user data:', error);
       get().setAuth(false);
     } finally {
       set({ isLoadingUser: false });

@@ -1,0 +1,172 @@
+.authLayout {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .pulseLine {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 146, 168, 0.7) 20%,
+      rgba(0, 146, 168, 1) 50%,
+      // основной акцент
+      rgba(0, 146, 168, 0.7) 80%,
+      transparent 100%
+    );
+    animation: pulse-flow 4s ease-in-out infinite;
+
+    &.pulseLine1 {
+      top: 15%;
+      left: -50%;
+      width: 45%;
+      animation-delay: 0s;
+      transform: rotate(-2deg);
+    }
+
+    &.pulseLine2 {
+      top: 65%;
+      right: -45%;
+      width: 40%;
+      animation-delay: 2s;
+      transform: rotate(1deg);
+    }
+
+    &.pulseLine3 {
+      top: 85%;
+      left: -30%;
+      width: 30%;
+      animation-delay: 3s;
+      transform: rotate(-1deg);
+    }
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 28px;
+    color: rgba(0, 146, 168, 0.6); // теперь бирюзовые
+    animation: heartbeat 3s ease-in-out infinite;
+    user-select: none;
+
+    &.heart1 {
+      top: 20%;
+      right: 15%;
+      animation-delay: 1s;
+      font-size: 24px;
+    }
+
+    &.heart2 {
+      bottom: 25%;
+      left: 10%;
+      animation-delay: 2.5s;
+      font-size: 20px;
+    }
+
+    &.heart3 {
+      top: 45%;
+      left: 8%;
+      animation-delay: 4s;
+      font-size: 22px;
+    }
+  }
+
+  .ecgLine {
+    position: absolute;
+    color: rgba(0, 146, 168, 0.6);
+    filter: drop-shadow(0 0 4px rgba(0, 146, 168, 0.5));
+
+    &.ecgTop {
+      top: 25%;
+      left: 5%;
+      width: 220px;
+      height: 50px;
+    }
+
+    &.ecgBottom {
+      bottom: 30%;
+      right: 8%;
+      width: 200px;
+      height: 35px;
+    }
+
+    .ecgSvg {
+      width: 100%;
+      height: 100%;
+      animation: ecg-pulse 4s linear infinite;
+    }
+  }
+
+  .contentWrapper {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 146, 168, 0.2);
+    border: 1px solid rgba(0, 146, 168, 0.3);
+  }
+}
+
+// 🔥 Анимации
+@keyframes pulse-flow {
+  0% {
+    transform: translateX(-120%) scaleX(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-60%) scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0%) scaleX(1.05);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(60%) scaleX(1);
+  }
+  100% {
+    transform: translateX(120%) scaleX(0.7);
+    opacity: 0;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  25% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(0.95);
+    opacity: 0.6;
+  }
+  75% {
+    transform: scale(1.1);
+    opacity: 0.75;
+  }
+}
+
+@keyframes ecg-pulse {
+  0% {
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+}

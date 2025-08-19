@@ -1,0 +1,159 @@
+.h1,
+.h2,
+.h3 {
+  font-weight: var(--fw-bold);
+  line-height: var(--line-140);
+}
+.h1 {
+  font-size: 36px;
+}
+.h2 {
+  font-size: 26px;
+}
+.h3 {
+  font-size: 22px;
+}
+
+.h4,
+.h5 {
+  font-weight: var(--fw-semibold);
+  line-height: var(--line-160);
+}
+.h4 {
+  font-size: 20px;
+}
+.h5 {
+  font-size: 18px;
+}
+
+.largeT {
+  font-size: 16px;
+  font-weight: var(--fw-medium);
+  line-height: var(--line-160);
+}
+
+.bodyT {
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  line-height: var(--line-180);
+}
+
+.smallT,
+.extraSmallT {
+  font-weight: var(--fw-regular);
+}
+.smallT {
+  font-size: 12px;
+  line-height: var(--line-140);
+}
+.extraSmallT {
+  font-size: 10px;
+  line-height: var(--line-160);
+}
+
+.buttonT {
+  font-size: 16px;
+  font-weight: var(--fw-bold);
+}
+
+.madeByGeeks {
+  font-size: 9px;
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+}
+
+/* weight */
+.bold {
+  font-weight: var(--fw-bold);
+}
+.semiBold {
+  font-weight: var(--fw-semibold);
+}
+.medium {
+  font-weight: var(--fw-medium);
+}
+.regular {
+  font-weight: var(--fw-regular);
+}
+
+/* colors */
+.dark {
+  color: var(--text-dark);
+}
+.white {
+  color: var(--white);
+}
+.light-blue {
+  color: var(--bg-accent);
+}
+.gray {
+  color: var(--text-sec);
+}
+.dark-blue {
+  color: var(--bg-sec);
+}
+
+.ocean-blue {
+  color: var(--ocean-blue);
+}
+
+.error {
+  color: var(--error);
+}
+
+@media (max-width: 1024px) {
+  .h1 {
+    font-size: 26px;
+  }
+  .h2 {
+    font-size: 22px;
+  }
+  .h3 {
+    font-size: 20px;
+  }
+  .h4 {
+    font-size: 18px;
+  }
+  .h5 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .h1 {
+    font-size: 22px;
+  }
+  .h2 {
+    font-size: 20px;
+  }
+  .h3 {
+    font-size: 18px;
+  }
+  .h4 {
+    font-size: 16px;
+  }
+  .h5 {
+    font-size: 14px;
+  }
+  .largeT {
+    font-size: 14px;
+  }
+  .bodyT {
+    font-size: 12px;
+  }
+  .smallT {
+    font-size: 10px;
+  }
+  .extraSmallT {
+    font-size: 8px;
+  }
+  .buttonT {
+    font-size: 12px;
+  }
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

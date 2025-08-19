@@ -1,4 +1,4 @@
-import { LoginPage, RegisterPage } from '../../../../pages';
+import { ActivationCodePage, LoginPage, RegisterPage } from '../../../../pages';
 import { paths } from '../../../../shared/constants/constants';
 import { GuestGuard } from '../../guards/GuestGuard';
 
@@ -16,6 +16,14 @@ export const authRouter = [
     element: (
       <GuestGuard>
         <RegisterPage />
+      </GuestGuard>
+    ),
+  },
+  {
+    path: paths.activation,
+    element: (
+      <GuestGuard>
+        <ActivationCodePage />
       </GuestGuard>
     ),
   },
