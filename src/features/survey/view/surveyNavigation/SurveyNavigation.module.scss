@@ -1,0 +1,19 @@
+.navigationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.leftButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.rightButtons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
