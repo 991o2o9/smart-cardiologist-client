@@ -15,6 +15,7 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const { setTokens, fetchUserData } = useAuth();
   const loginMutation = useLoginMutation();
+  const aoo = 12;
 
   const {
     control,
@@ -75,7 +76,6 @@ export const LoginForm = () => {
     }
   };
 
-  const handleForgotPassword = () => navigate('/forgot-password');
   const handleSignUp = () => navigate('/register');
 
   return (
@@ -122,15 +122,6 @@ export const LoginForm = () => {
       </div>
 
       <div className={styles.btnArea}>
-        <button
-          type="button"
-          onClick={handleForgotPassword}
-          disabled={isSubmitting}
-        >
-          <Typography variant="buttonT" color="dark">
-            三 Forgot password?
-          </Typography>
-        </button>
         <Button
           variant="primary"
           type="submit"
