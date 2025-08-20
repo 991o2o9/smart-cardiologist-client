@@ -15,7 +15,6 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const { setTokens, fetchUserData } = useAuth();
   const loginMutation = useLoginMutation();
-  const aoo = 12;
 
   const {
     control,
@@ -136,7 +135,7 @@ export const LoginForm = () => {
 
       <div className={styles.haveAccount}>
         <Typography variant="largeT" color="gray">
-          Don't have an account?
+          Don&apos;t have an account?
         </Typography>
         <button type="button" onClick={handleSignUp} disabled={isSubmitting}>
           <Typography variant="largeT" color="ocean-blue">
