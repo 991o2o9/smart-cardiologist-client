@@ -1,3 +1,9 @@
+import { HeroBlock } from '../../../widgets/heroBlock/view/HeroBlock';
+
 export const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <HeroBlock />
+    </>
+  );
 };

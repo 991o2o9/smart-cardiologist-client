@@ -1,0 +1,22 @@
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 60px;
+  @media (max-width: 1024px) {
+    padding: 0px 30px;
+  }
+  @media (max-width: 767px) {
+    padding: 0px 20px;
+  }
+}
+
+.headerContainer {
+  padding: 0px 55px;
+  @media (max-width: 1024px) {
+    padding: 0px 30px;
+  }
+  @media (max-width: 767px) {
+    padding: 0px 20px;
+  }
+}

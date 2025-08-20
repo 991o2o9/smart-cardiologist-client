@@ -9,7 +9,37 @@ export const paths = {
   aiChat: '/ai-chat',
   profile: '/profile',
   activation: '/activation-email',
+  history: '/history',
+  analytics: '/analytics',
 };
+
+export const navigation = [
+  {
+    id: 1,
+    key: 'Home',
+    path: paths.homePage,
+  },
+  {
+    id: 2,
+    key: 'Health Check',
+    path: paths.healthCheck,
+  },
+  {
+    id: 3,
+    key: 'Ai Chat',
+    path: paths.aiChat,
+  },
+  {
+    id: 4,
+    key: 'History',
+    path: paths.history,
+  },
+  {
+    id: 5,
+    key: 'Analytics',
+    path: paths.analytics,
+  },
+];
 
 export const tokens = {
   access: 'access_token',
