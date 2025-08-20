@@ -1,69 +1,120 @@
-# React + TypeScript + Vite
+# 🩺 Smart Cardiologist Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intelligent cardiological platform for heart disease risk analysis using AI and WebRTC technologies.
 
-Currently, two official plugins are available:
+## ✨ Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📊 **Risk Analysis** - Heart attack possibility assessment based on user data
+- 🤖 **AI Cardiologist** - Smart assistant with personalized recommendations
+- 💓 **Pulse Detector** - Heart rate detection via WebRTC and camera
+- 📋 **Medical Surveys** - Interactive forms for medical history collection
+- 📈 **Data Visualization** - Health status charts and diagrams
 
-## Expanding the ESLint configuration
+## 🔬 WebRTC Pulse Detection
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Unique pulse detection technology through web camera:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Photoplethysmography (PPG)** - Analysis of skin color changes during blood flow
+- **FFT Processing** - Fast Fourier Transform for heart rhythm extraction
+- **Data Smoothing** - Moving-average algorithms for accurate results
+- **Real-time Monitoring** - Live pulse monitoring without additional devices
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Frontend:** React 19, TypeScript, Vite
+- **Styling:** SCSS Modules, Responsive Design
+- **State Management:** Zustand, React Hook Form
+- **Data Fetching:** TanStack Query, Axios
+- **Routing:** React Router DOM
+- **Charts:** Chart.js, React Chart.js 2
+- **Signal Processing:** FFT.js, Moving Average
+- **UI Components:** Lucide React Icons
+- **Form Validation:** Zod + Hookform Resolvers
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Yarn package manager
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/your-username/smart-cardiologist-client.git
+
+# Navigate to project
+cd smart-cardiologist-client
+
+# Install dependencies
+yarn install
+
+# Start development server
+yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Available Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+yarn dev        # Start development server
+yarn build      # Build for production
+yarn preview    # Preview production build
+yarn lint       # Run ESLint
 ```
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/          # Application configuration
+├── entities/     # Business entities & API
+├── features/     # Feature components
+├── pages/        # Page components
+├── shared/       # Shared utilities & UI
+└── widgets/      # Complex UI widgets
+```
+
+## 🔐 Features Overview
+
+### Authentication System
+- User registration with email verification
+- Secure login with form validation
+- Protected routes and guest guards
+
+### Health Assessment
+- Interactive medical questionnaires
+- Risk calculation algorithms
+- Progress tracking and navigation
+
+### Pulse Detection
+- Camera-based heart rate monitoring
+- Real-time signal processing
+- WebRTC integration for accurate measurements
+
+### AI Consultation
+- Virtual cardiologist chat interface
+- Personalized health recommendations
+- Medical advice based on user data
+
+## 📱 Responsive Design
+
+Fully responsive interface optimized for:
+- Desktop computers
+- Tablets
+- Mobile devices
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🚨 Disclaimer
+
+This application is for educational and informational purposes only. It is not intended to replace professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
