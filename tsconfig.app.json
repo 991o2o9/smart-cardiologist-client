@@ -23,10 +23,14 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-   /* Aliases */
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"]
-    },
-  "include": ["src"]
+  /* Aliases */
+  "baseUrl": ".",
+  "paths": {
+    "@src/*": ["src/*"]
+  },
+  "include": [
+    "src",
+    "src/pages/activationCode/view/.tsx",
+    "src/entities/survey"
+  ]
 }
