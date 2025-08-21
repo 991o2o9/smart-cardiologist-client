@@ -28,29 +28,19 @@ ChartJS.register(
 );
 
 interface PulseDetectorProps {
-  /** Продолжительность окна анализа, сек */
   windowSec?: number;
-  /** Целевая частота выборки (кадров в сек) */
   fps?: number;
-  /** Диапазон допустимого ЧСС (уд/мин) */
   bpmRange?: { min: number; max: number };
-  /** Показывать превью камеры */
   showPreview?: boolean;
-  /** Callback для передачи измеренного пульса */
   onPulseDetected?: (pulse: number) => void;
-  /** Текущее значение пульса из формы */
   currentValue?: number;
 }
 
-/**
- * Компонент для измерения пульса (PPG) с камеры через WebRTC.
- * ⚠️ Не медицинский прибор. Точность зависит от освещения, положения пальца/лица и качества камеры.
- */
 export const PulseDetector: React.FC<PulseDetectorProps> = ({
-  windowSec = 30, // Увеличено время для более точного измерения
+  windowSec = 30,
   fps = 30,
   bpmRange = { min: 50, max: 120 }, // Сужен диапазон для лучшей точности
-  showPreview = true, // Включено по умолчанию для контроля
+  showPreview = true,
   onPulseDetected,
   currentValue,
 }) => {
@@ -68,7 +58,6 @@ export const PulseDetector: React.FC<PulseDetectorProps> = ({
     'poor',
   );
 
-  // Сырой сигнал для разных цветовых каналов
   const [, setRedSignal] = useState<number[]>([]);
   const [greenSignal, setGreenSignal] = useState<number[]>([]);
   const [processedSignal, setProcessedSignal] = useState<number[]>([]);
@@ -86,12 +75,12 @@ export const PulseDetector: React.FC<PulseDetectorProps> = ({
     setGreenSignal([]);
     setProcessedSignal([]);
     setSignalQuality('poor');
-    lastReportedBpm.current = null; // Сбрасываем последний переданный BPM
+    lastReportedBpm.current = null;
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: {
-          facingMode: 'user', // Фронтальная камера для лица
+          facingMode: 'user', // Фронтальная камера
           width: { ideal: 1280, min: 640 },
           height: { ideal: 720, min: 480 },
           frameRate: { ideal: fps, min: 15 },

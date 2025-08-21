@@ -25,7 +25,11 @@ export const HeroBlock = () => {
             Smarter insights for a stronger heart
           </Typography>
 
-          <Typography variant="h5" color="gray" className={styles.description}>
+          <Typography
+            variant="h5"
+            color="moreGray"
+            className={styles.description}
+          >
             PulseAI combines advanced artificial intelligence with medical
             expertise to assess heart risks, deliver personalized
             recommendations, answer your questions in real time, and track your

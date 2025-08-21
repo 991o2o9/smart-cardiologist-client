@@ -1,1 +1,0 @@
-export { PulseDetector } from './PulseDetector';

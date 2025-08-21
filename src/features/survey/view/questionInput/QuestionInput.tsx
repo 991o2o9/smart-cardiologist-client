@@ -3,7 +3,7 @@ import styles from './QuestionInput.module.scss';
 import type { Question } from '../../../../shared/types/survey';
 import { Input } from '../../../../shared/ui/input/view/Input';
 import { Typography } from '../../../../shared/ui/typography/view/Typography';
-import { PulseDetector } from '../../../../shared/ui/pulseDetector';
+import { PulseDetector } from '../../../pulseDetector';
 
 interface QuestionInputProps {
   question: Question;

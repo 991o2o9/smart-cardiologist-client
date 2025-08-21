@@ -1,0 +1,43 @@
+.aboutBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.cardsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--light-gray);
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f7fa 100%);
+    box-shadow: 0 2px 4px rgba(0, 146, 168, 0.1);
+    svg {
+      width: 45px;
+      height: 45px;
+      color: var(--ocean-blue);
+    }
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

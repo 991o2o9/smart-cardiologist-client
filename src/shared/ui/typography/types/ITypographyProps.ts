@@ -33,4 +33,5 @@ export type Color =
   | 'dark-blue'
   | 'error'
   | 'ocean-blue'
-  | 'success';
+  | 'success'
+  | 'moreGray';

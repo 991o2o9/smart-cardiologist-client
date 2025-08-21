@@ -11,6 +11,8 @@ export const paths = {
   activation: '/activation-email',
   history: '/history',
   analytics: '/analytics',
+  resources: '/resources',
+  legal: '/legal',
 };
 
 export const navigation = [
@@ -38,6 +40,19 @@ export const navigation = [
     id: 5,
     key: 'Analytics',
     path: paths.analytics,
+  },
+];
+
+export const footerNavigation = [
+  {
+    id: 1,
+    key: 'Resources',
+    path: paths.resources,
+  },
+  {
+    id: 2,
+    key: 'Legal',
+    paths: paths.legal,
   },
 ];
 

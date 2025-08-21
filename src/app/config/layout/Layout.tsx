@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '../../../widgets/header';
 import Loading from '../../../shared/ui/loading/view/Loading';
+import { Footer } from '../../../widgets/footer';
 
 export const Layout = () => {
   return (
@@ -12,7 +13,7 @@ export const Layout = () => {
           <Outlet />
         </Suspense>
       </main>
-      <footer />
+      <Footer />
     </>
   );
 };
