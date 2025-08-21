@@ -29,13 +29,6 @@ export const ChatInput: FC = () => {
     setInputValue('');
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit(e as FormEvent);
-    }
-  };
-
   const handleVoiceToggle = () => {
     if (isListening) {
       stopVoiceInput();
@@ -65,7 +58,6 @@ export const ChatInput: FC = () => {
             }
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyPress}
             disabled={isLoading || isListening || !isAuth}
             className={styles.messageInput}
             noHighlight
@@ -74,7 +66,6 @@ export const ChatInput: FC = () => {
           <div className={styles.inputActions}>
             <Button
               variant="secondary"
-              size="icon"
               type="button"
               onClick={handleVoiceToggle}
               disabled={isLoading || !isAuth}
