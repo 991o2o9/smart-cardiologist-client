@@ -1,0 +1,57 @@
+import { Loader2 } from 'lucide-react';
+import styles from './MessagesList.module.scss';
+import { useEffect, useRef, type FC } from 'react';
+import { useChatStore } from '../../../entities/aiChat';
+import { Typography } from '../../../shared/ui';
+import { Message } from '../../../features/aiChat';
+
+export const MessagesList: FC = () => {
+  const { messages, isLoading, error } = useChatStore();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isLoading]);
+
+  return (
+    <div className={styles.messagesList}>
+      <div className={styles.messagesContainer}>
+        {messages.map((message, index) => (
+          <Message
+            key={`${message.role}-${index}-${message.timestamp}`}
+            message={message}
+          />
+        ))}
+
+        {isLoading && (
+          <div className={styles.loadingMessage}>
+            <div className={styles.avatarContainer}>
+              <div className={styles.avatarAssistant}>
+                <Loader2 size={20} color="white" className={styles.spinner} />
+              </div>
+            </div>
+            <div className={styles.loadingBubble}>
+              <Typography variant="bodyT" color="dark">
+                Доктор Пульс печатает...
+              </Typography>
+            </div>
+          </div>
+        )}
+
+        {error && (
+          <div className={styles.errorMessage}>
+            <Typography variant="bodyT" color="error">
+              {error}
+            </Typography>
+          </div>
+        )}
+
+        <div ref={messagesEndRef} />
+      </div>
+    </div>
+  );
+};

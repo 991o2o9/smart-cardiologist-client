@@ -14,4 +14,5 @@ export interface InputProps {
   alwaysShowMask?: boolean;
   checked?: boolean;
   label?: string;
+  noHighlight?: boolean;
 }

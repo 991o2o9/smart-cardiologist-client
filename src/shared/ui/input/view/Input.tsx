@@ -23,6 +23,7 @@ const InputComponent: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     mask = '',
     alwaysShowMask = false,
     checked = false,
+    noHighlight = false,
     label,
   },
   ref,
@@ -37,6 +38,7 @@ const InputComponent: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     error ? styles.inputError : '',
     disabled ? styles.inputDisabled : '',
     isPasswordType ? styles.inputPassword : '',
+    noHighlight ? styles.inputNoHighlight : '',
   ]
     .filter(Boolean)
     .join(' ')
