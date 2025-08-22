@@ -57,13 +57,13 @@
   }
 
   &:hover {
-    box-shadow: 0px 0px 4px 0px #027cf7;
+    box-shadow: 0px 0px 4px 0px var(--ocean-blue);
   }
 
   &:focus {
     outline: none;
-    border-color: var(--bg-accent);
-    box-shadow: 0px 0px 4px 0px #027cf7;
+    border-color: var(--ocean-blue);
+    box-shadow: 0px 0px 4px 0px var(--ocean-blue);
   }
 
   &.inputError {

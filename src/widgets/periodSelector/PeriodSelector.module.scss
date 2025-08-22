@@ -1,0 +1,37 @@
+.periodSelector {
+  margin-bottom: 2rem;
+}
+
+.periodTitle {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.periodButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.periodButton {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--light-blue);
+  background: transparent;
+  color: var(--dark);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+
+  &:hover {
+    background: var(--light-blue);
+    color: white;
+  }
+
+  &.active {
+    background: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+    color: white;
+  }
+}

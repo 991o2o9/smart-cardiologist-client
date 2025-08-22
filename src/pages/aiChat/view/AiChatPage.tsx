@@ -23,10 +23,10 @@ export const AiChatPage: FC = () => {
       <Container>
         <div className={styles.chatHeader}>
           <Typography variant="h2" weight="bold" color="dark">
-            AI Кардиолог
+            AI Cardiologist
           </Typography>
           <Typography variant="bodyT" color="dark">
-            Персональные консультации и рекомендации для вашего здоровья
+            Personalized consultations and recommendations for your health
           </Typography>
         </div>
 

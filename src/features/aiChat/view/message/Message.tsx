@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { ChatMessage } from '../../../../entities/aiChat/api/chatApi';
 import { Typography } from '../../../../shared/ui/typography/view/Typography';
+import { useAuth } from '../../../../shared/hooks/useAuth';
 
 import styles from './Message.module.scss';
 import { Avatar } from '../avatar/Avatar';
@@ -10,13 +11,14 @@ interface MessageProps {
 }
 
 export const Message: FC<MessageProps> = ({ message }) => {
+  const { user } = useAuth();
   const isAssistant = message.role === 'assistant';
   const isUser = message.role === 'user';
 
   const formatTime = (timestamp?: number) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
-    return date.toLocaleTimeString('ru-RU', {
+    return date.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
     });
@@ -38,7 +40,7 @@ export const Message: FC<MessageProps> = ({ message }) => {
         {isAssistant && (
           <div className={styles.messageHeader}>
             <Typography variant="smallT" weight="medium" color="dark">
-              Доктор Пульс
+              HeartSync Advisor
             </Typography>
             {message.timestamp && (
               <Typography variant="extraSmallT" color="moreGray">
@@ -73,7 +75,7 @@ export const Message: FC<MessageProps> = ({ message }) => {
 
       {isUser && (
         <div className={styles.avatarContainer}>
-          <Avatar type="user" />
+          <Avatar type="user" userEmail={user?.email} />
         </div>
       )}
     </div>

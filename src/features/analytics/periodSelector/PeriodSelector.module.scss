@@ -1,0 +1,64 @@
+.periodSelector {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--bg-sec-light);
+  margin-bottom: 24px;
+
+  .title {
+    font-size: 18px;
+    font-weight: var(--fw-semibold);
+    color: var(--text-dark);
+    margin: 0 0 20px 0;
+    line-height: var(--line-140);
+  }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      gap: 8px;
+    }
+  }
+
+  .periodButton {
+    background: var(--bg-sec-light);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: var(--fw-medium);
+    color: var(--text-gray);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 80px;
+
+    &:hover {
+      background: var(--light-gray);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, var(--ocean-blue));
+      color: var(--white);
+      border-color: var(--ocean-blue);
+      box-shadow: 0 4px 15px rgba(0, 146, 168, 0.3);
+
+      &:hover {
+        background: linear-gradient(135deg, var(--ocean-blue-hover));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 146, 168, 0.4);
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 10px 16px;
+      font-size: 13px;
+      min-width: 70px;
+    }
+  }
+}

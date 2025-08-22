@@ -109,27 +109,6 @@
   }
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #0092a8 0%, #00bcd4 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 2px 8px rgba(0, 146, 168, 0.3);
-  border: 2px solid white;
-  transition: all 0.2s ease;
-
-  &:hover {
-    box-shadow: 0 4px 12px rgba(0, 146, 168, 0.4);
-    transform: translateY(-1px);
-  }
-}
-
 .chevron {
   color: #6b7280;
   transition: transform 0.2s ease;
@@ -171,20 +150,6 @@
   align-items: center;
   gap: 12px;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-}
-
-.avatarSmall {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #0092a8 0%, #00bcd4 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-  font-size: 12px;
-  flex-shrink: 0;
 }
 
 .userInfo {

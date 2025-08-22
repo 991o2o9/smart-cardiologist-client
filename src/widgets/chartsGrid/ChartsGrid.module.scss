@@ -1,0 +1,36 @@
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.chartCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chartTitle {
+  margin: 0;
+  color: var(--dark);
+}
+
+.chartAccentLine {
+  flex: 1;
+  height: 2px;
+  background: var(--ocean-blue);
+  border-radius: 1px;
+}
+
+.chartContainer {
+  min-height: 300px;
+}

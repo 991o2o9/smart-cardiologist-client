@@ -42,8 +42,8 @@ export const ChatInput: FC = () => {
       {!isAuth && (
         <div className={styles.authNotice}>
           <Typography variant="bodyT" color="dark">
-            Чтобы пользоваться чатом, пожалуйста,{' '}
-            <Link to={paths.loginPage}>войдите</Link> в аккаунт.
+            To use the chat, please <Link to={paths.loginPage}>log in</Link> to
+            your account.
           </Typography>
         </div>
       )}
@@ -52,9 +52,7 @@ export const ChatInput: FC = () => {
           <Input
             type="text"
             placeholder={
-              isAuth
-                ? 'Напишите ваш вопрос...'
-                : 'Войдите, чтобы писать сообщения'
+              isAuth ? 'Write your question...' : 'Log in to send messages'
             }
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -72,9 +70,7 @@ export const ChatInput: FC = () => {
               className={`${styles.voiceButton} ${
                 isListening ? styles.voiceActive : ''
               }`}
-              ariaLabel={
-                isListening ? 'Остановить запись' : 'Начать голосовой ввод'
-              }
+              ariaLabel={isListening ? 'Stop recording' : 'Start voice input'}
             >
               {isListening ? (
                 <MicOff size={20} color="var(--error)" />
@@ -90,7 +86,7 @@ export const ChatInput: FC = () => {
                 !inputValue.trim() || isLoading || isListening || !isAuth
               }
               className={styles.sendButton}
-              ariaLabel="Отправить сообщение"
+              ariaLabel="Send message"
             >
               <Send size={20} color="white" />
             </Button>

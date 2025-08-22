@@ -1,5 +1,12 @@
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+interface NavigationItem {
+  id: number;
+  key: string;
+  path: string;
+  isAuth?: boolean;
+}
+
 export const paths = {
   homePage: '/',
   registerPage: '/register',
@@ -15,7 +22,7 @@ export const paths = {
   legal: '/legal',
 };
 
-export const navigation = [
+export const navigation: NavigationItem[] = [
   {
     id: 1,
     key: 'Home',
@@ -35,11 +42,13 @@ export const navigation = [
     id: 4,
     key: 'History',
     path: paths.history,
+    isAuth: true,
   },
   {
     id: 5,
     key: 'Analytics',
     path: paths.analytics,
+    isAuth: true,
   },
 ];
 
@@ -52,7 +61,7 @@ export const footerNavigation = [
   {
     id: 2,
     key: 'Legal',
-    paths: paths.legal,
+    path: paths.legal,
   },
 ];
 
