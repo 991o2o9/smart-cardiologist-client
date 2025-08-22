@@ -28,9 +28,16 @@ export const AnalyticsPage = () => {
   if (error || !analytics) {
     return (
       <div className={styles.analyticsPage}>
-        <div className={styles.errorContainer}>
-          <h2>Data Loading Error</h2>
-          <p>Failed to load analytics data. Try refreshing the page.</p>
+        <div className={styles.container}>
+          <AnalyticsHeader />
+          <div className={styles.noDataContainer}>
+            <div className={styles.icon}>📊</div>
+            <h2>No Data Available</h2>
+            <p>
+              You currently have no data for analysis. Start filling out health
+              questionnaires to view your statistics and analytics.
+            </p>
+          </div>
         </div>
       </div>
     );
