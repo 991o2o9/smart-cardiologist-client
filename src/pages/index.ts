@@ -47,3 +47,9 @@ export const ActivationCodePage = lazy(() =>
     default: module.ActivationCodePage,
   })),
 );
+
+export const HistoryHeartPage = lazy(() =>
+  import('./historyHeart/view/HistoryHeartPage').then((module) => ({
+    default: module.HistoryHeartPage,
+  })),
+);

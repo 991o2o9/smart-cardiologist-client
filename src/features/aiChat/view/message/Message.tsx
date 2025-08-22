@@ -53,7 +53,11 @@ export const Message: FC<MessageProps> = ({ message }) => {
             isUser ? styles.userBubble : styles.assistantBubble
           }`}
         >
-          <Typography variant="bodyT" color={isUser ? 'white' : 'dark'}>
+          <Typography
+            variant="bodyT"
+            color={isUser ? 'white' : 'dark'}
+            isParsed
+          >
             {message.content}
           </Typography>
         </div>

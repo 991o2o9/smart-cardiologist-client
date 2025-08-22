@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from 'zustand';
 import {
   chatApi,
@@ -24,6 +25,8 @@ interface ChatStore {
   loadHistory: (params?: { limit?: number; offset?: number }) => Promise<void>;
   openChat: (chatId: number) => Promise<void>;
   createNewChat: () => Promise<void>;
+  deleteAllHistory: () => Promise<void>;
+  deleteChat: (chatId: number) => Promise<void>;
 
   startVoiceInput: () => Promise<void>;
   stopVoiceInput: () => void;
@@ -235,6 +238,48 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 
   clearError: () => {
     set({ error: null });
+  },
+
+  deleteAllHistory: async () => {
+    try {
+      await chatApi.deleteAllHistory();
+      set({ history: [] });
+    } catch (error) {
+      set({
+        error:
+          error instanceof Error ? error.message : 'Не удалось удалить историю',
+      });
+    }
+  },
+
+  deleteChat: async (chatId: number) => {
+    try {
+      await chatApi.deleteChat(chatId);
+      // Удаляем чат из истории
+      set((state) => ({
+        history: state.history.filter((item) => item.id !== chatId),
+      }));
+      // Если удаляемый чат был активным, сбрасываем активный чат
+      const { activeChatId } = get();
+      if (activeChatId === chatId) {
+        set({
+          activeChatId: null,
+          messages: [
+            {
+              role: 'assistant',
+              content:
+                'Привет! Я доктор Пульс, ваш персональный AI-кардиолог. Готов ответить на ваши вопросы о здоровье сердца и дать рекомендации на основе ваших данных.',
+              timestamp: Date.now(),
+            },
+          ],
+        });
+      }
+    } catch (error) {
+      set({
+        error:
+          error instanceof Error ? error.message : 'Не удалось удалить чат',
+      });
+    }
   },
 }));
 

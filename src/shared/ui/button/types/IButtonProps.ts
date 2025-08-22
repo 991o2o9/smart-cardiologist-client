@@ -20,7 +20,8 @@ export type ButtonVariant =
   | 'secondary'
   | 'tertiary'
   | 'slider'
-  | 'tertiary-dark';
+  | 'tertiary-dark'
+  | 'danger';
 
 export type ButtonSize = 'small' | 'medium' | 'large' | 'fullWidth';
 

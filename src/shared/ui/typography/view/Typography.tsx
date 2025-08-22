@@ -1,7 +1,8 @@
-import parse from 'html-react-parser';
 import styles from './Typography.module.scss';
 import type { TypographyProps } from '../types/ITypographyProps';
 import type { FC } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const Tags = {
   h1: 'h1',
@@ -43,17 +44,19 @@ export const Typography: FC<TypographyProps> = ({
   const getContent = () => {
     if (!children) return null;
 
-    let content = children;
-
-    if (truncate && typeof content === 'string') {
-      content = truncateString(content, truncate as number);
+    if (truncate && typeof children === 'string') {
+      return truncateString(children, truncate as number);
     }
 
-    if (isParsed && typeof content === 'string') {
-      return parse(content);
+    if (isParsed && typeof children === 'string') {
+      return (
+        <div className={uniqClassNames}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{children}</ReactMarkdown>
+        </div>
+      );
     }
 
-    return content;
+    return children;
   };
 
   const TagName = isParsed ? 'div' : Tags[variant] || 'p';

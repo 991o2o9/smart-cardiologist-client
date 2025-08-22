@@ -49,6 +49,11 @@ export interface HistoryItem {
   updated_at: string;
 }
 
+export interface DeleteHistoryResponse {
+  message: string;
+  deleted_count: number;
+}
+
 export const chatApi = {
   // Отправка сообщения в активный чат
   sendMessage: async (
@@ -123,6 +128,22 @@ export const chatApi = {
   activateChat: async (chatId: number): Promise<{ message: string }> => {
     const { data } = await $authApi.post<{ message: string }>(
       `/cardio-assistant/history/${chatId}/activate`,
+    );
+    return data;
+  },
+
+  // Удалить всю историю чатов
+  deleteAllHistory: async (): Promise<DeleteHistoryResponse> => {
+    const { data } = await $authApi.delete<DeleteHistoryResponse>(
+      '/cardio-assistant/history',
+    );
+    return data;
+  },
+
+  // Удалить конкретный чат
+  deleteChat: async (chatId: number): Promise<{ message: string }> => {
+    const { data } = await $authApi.delete<{ message: string }>(
+      `/cardio-assistant/history/${chatId}`,
     );
     return data;
   },
