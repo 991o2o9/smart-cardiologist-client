@@ -3,7 +3,7 @@ import { navigation, paths } from '../../../shared/constants/constants';
 import styles from './Header.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { useAuth } from '../../../shared/hooks/useAuth';
-import { SquareActivity, User, LogOut, ChevronDown } from 'lucide-react';
+import { SquareActivity, LogOut, ChevronDown } from 'lucide-react';
 import { Typography } from '../../../shared/ui/typography/view/Typography';
 import { Container } from '../../../shared/ui/container/view/Container';
 import { Button } from '../../../shared/ui/button/view/Button';
@@ -43,11 +43,6 @@ export const Header: React.FC = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
-  };
-
-  const handleProfileClick = () => {
-    setDropdownOpen(false);
-    console.log('Profile clicked');
   };
 
   return (
@@ -109,14 +104,6 @@ export const Header: React.FC = () => {
                     </div>
 
                     <div className={styles.dropdownItems}>
-                      <button
-                        onClick={handleProfileClick}
-                        className={styles.dropdownItem}
-                      >
-                        <User size={16} />
-                        <span>Profile</span>
-                      </button>
-
                       <button
                         onClick={handleLogout}
                         className={`${styles.dropdownItem} ${styles.logoutItem}`}
