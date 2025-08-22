@@ -26,7 +26,7 @@ export const MessagesList: FC = () => {
             message={message}
           />
         ))}
-        {!isLoading && (
+        {isLoading && (
           <div className={styles.loadingMessage}>
             <div className={styles.avatarContainer}>
               <div className={styles.avatarAssistant}>
