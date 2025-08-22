@@ -1,0 +1,62 @@
+.chartCard {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--bg-sec-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    margin-bottom: 20px;
+    position: relative;
+
+    .title {
+      font-size: 18px;
+      font-weight: var(--fw-semibold);
+      color: var(--text-dark);
+      margin: 0 0 12px 0;
+      line-height: var(--line-140);
+    }
+
+    .accentLine {
+      width: 40px;
+      height: 3px;
+      background: var(--accent-color);
+      border-radius: 2px;
+    }
+  }
+
+  .chartContainer {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    .header {
+      margin-bottom: 16px;
+
+      .title {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .accentLine {
+        width: 32px;
+        height: 2px;
+      }
+    }
+
+    .chartContainer {
+      min-height: 250px;
+    }
+  }
+}

@@ -53,3 +53,9 @@ export const HistoryHeartPage = lazy(() =>
     default: module.HistoryHeartPage,
   })),
 );
+
+export const AnalyticsPage = lazy(() =>
+  import('./analytics/view/AnalyticsPage').then((module) => ({
+    default: module.AnalyticsPage,
+  })),
+);

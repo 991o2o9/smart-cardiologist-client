@@ -1,13 +1,178 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
 .codeForm {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 16px;
-  padding: 24px;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, var(--ocean-blue), var(--light-gray));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.description {
+  color: #6b7280;
+  margin: 0;
+}
+
+.codeInputContainer {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.codeInput {
+  width: 50px;
+  height: 60px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  border: 2px solid #e5e7eb;
   border-radius: 12px;
+  background: #fff;
+  outline: none;
+  transition: all 0.2s ease;
+  color: #1f2937;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  &:focus {
+    border-color: var(--ocean-blue);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: scale(1.05);
+  }
+
+  &.filled {
+    border-color: var(--ocean-blue);
+    background: rgba(102, 126, 234, 0.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  }
+
+  &:hover:not(:focus) {
+    border-color: #9ca3af;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.activateButton {
+  position: relative;
+  overflow: hidden;
+
+  &.ready {
+    background: linear-gradient(45deg, var(--ocean-blue)) !important;
+    color: white !important;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+    }
+
+    &:hover::before {
+      left: 100%;
+    }
+  }
+
+  &:disabled:not(.ready) {
+    background: #e5e7eb !important;
+    color: #9ca3af !important;
+    cursor: not-allowed;
+  }
+}
+
+.resendButton {
+  background: transparent !important;
+  border: 2px solid #e5e7eb !important;
+  color: #6b7280 !important;
+
+  &:hover:not(:disabled) {
+    border-color: var(--ocean-blue) !important;
+    background: rgba(102, 126, 234, 0.05) !important;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.loadingContainer,
+.errorContainer,
+.successContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+
+  & > * {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 24px 32px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .codeForm {
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .codeInputContainer {
+    gap: 8px;
+  }
+
+  .codeInput {
+    width: 42px;
+    height: 52px;
+    font-size: 20px;
+  }
 
   .actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
   }
 }

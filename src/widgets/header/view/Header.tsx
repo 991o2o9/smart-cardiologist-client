@@ -7,6 +7,7 @@ import { SquareActivity, User, LogOut, ChevronDown } from 'lucide-react';
 import { Typography } from '../../../shared/ui/typography/view/Typography';
 import { Container } from '../../../shared/ui/container/view/Container';
 import { Button } from '../../../shared/ui/button/view/Button';
+import { Avatar } from '../../../shared/ui/avatar';
 
 export const Header: React.FC = () => {
   const { isAuth, user, isLoadingUser, fetchUserData, logout } = useAuth();
@@ -40,15 +41,6 @@ export const Header: React.FC = () => {
     navigate(paths.loginPage);
   };
 
-  const getInitials = (email?: string | null): string => {
-    if (!email) return 'U';
-    const parts = email.split('@')[0].split('.');
-    if (parts.length >= 2) {
-      return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
-    }
-    return email.substring(0, 2).toUpperCase();
-  };
-
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
   };
@@ -73,19 +65,21 @@ export const Header: React.FC = () => {
 
           <nav className={styles.navigation}>
             <ul>
-              {navigation.map((item) => (
-                <li key={item.id}>
-                  <Link to={item.path} className={styles.navLink}>
-                    <Typography
-                      variant="largeT"
-                      color="ocean-blue"
-                      weight="semiBold"
-                    >
-                      {item.key}
-                    </Typography>
-                  </Link>
-                </li>
-              ))}
+              {navigation
+                .filter((item) => !item.isAuth || isAuth)
+                .map((item) => (
+                  <li key={item.id}>
+                    <Link to={item.path} className={styles.navLink}>
+                      <Typography
+                        variant="largeT"
+                        color="ocean-blue"
+                        weight="semiBold"
+                      >
+                        {item.key}
+                      </Typography>
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </nav>
 
@@ -93,9 +87,7 @@ export const Header: React.FC = () => {
             {isAuth && !isLoadingUser ? (
               <div className={styles.userDropdown} ref={dropdownRef}>
                 <button onClick={toggleDropdown} className={styles.userButton}>
-                  <div className={styles.avatar}>
-                    {getInitials(user?.email)}
-                  </div>
+                  <Avatar email={user?.email} size="medium" />
                   <ChevronDown
                     size={16}
                     className={`${styles.chevron} ${
@@ -107,9 +99,7 @@ export const Header: React.FC = () => {
                 {dropdownOpen && (
                   <div className={styles.dropdownMenu}>
                     <div className={styles.dropdownHeader}>
-                      <div className={styles.avatarSmall}>
-                        {getInitials(user?.email)}
-                      </div>
+                      <Avatar email={user?.email} size="small" />
                       <div className={styles.userInfo}>
                         <Typography variant="bodyT" color="ocean-blue">
                           {user?.email}

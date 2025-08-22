@@ -1,0 +1,160 @@
+.metricCard {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--bg-sec-light);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-color);
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+    .titleSection {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+
+      .title {
+        font-size: 16px;
+        font-weight: var(--fw-semibold);
+        color: var(--text-dark);
+        margin: 0;
+        line-height: var(--line-140);
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        color: var(--accent-color);
+        flex-shrink: 0;
+      }
+    }
+
+    .trendIndicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+
+      .trendIcon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .valueSection {
+    .mainValue {
+      font-size: 32px;
+      font-weight: var(--fw-bold);
+      color: var(--text-dark);
+      line-height: 1;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+
+      .unit {
+        font-size: 18px;
+        font-weight: var(--fw-medium);
+        color: var(--text-gray);
+      }
+    }
+
+    .range {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .rangeItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+
+        .rangeLabel {
+          color: var(--text-gray);
+          font-weight: var(--fw-medium);
+        }
+
+        .rangeValue {
+          color: var(--text-dark);
+          font-weight: var(--fw-semibold);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    .header {
+      margin-bottom: 16px;
+
+      .titleSection {
+        .title {
+          font-size: 15px;
+        }
+
+        .icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .trendIndicator {
+        width: 28px;
+        height: 28px;
+
+        .trendIcon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    .valueSection {
+      .mainValue {
+        font-size: 28px;
+        margin-bottom: 12px;
+
+        .unit {
+          font-size: 16px;
+        }
+      }
+
+      .range {
+        gap: 6px;
+
+        .rangeItem {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

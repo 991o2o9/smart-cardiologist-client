@@ -1,4 +1,5 @@
 import {
+  AnalyticsPage,
   HistoryHeartPage,
   PredictionPage,
   ProfilePage,
@@ -28,6 +29,14 @@ export const privateRouter = [
     element: (
       <AuthGuard>
         <HistoryHeartPage />
+      </AuthGuard>
+    ),
+  },
+  {
+    path: paths.analytics,
+    element: (
+      <AuthGuard>
+        <AnalyticsPage />
       </AuthGuard>
     ),
   },

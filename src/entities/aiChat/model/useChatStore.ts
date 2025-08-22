@@ -38,7 +38,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     {
       role: 'assistant',
       content:
-        'Привет! Я доктор Пульс, ваш персональный AI-кардиолог. Готов ответить на ваши вопросы о здоровье сердца и дать рекомендации на основе ваших данных.',
+        'Hello! I am HeartSync Advisor, your personal AI cardiologist. Ready to answer your questions about heart health and provide recommendations based on your data.',
       timestamp: Date.now(),
     },
   ],
@@ -66,14 +66,14 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   sendMessage: async (content: string) => {
     const { messages, activeChatId } = get();
 
-    // Создаем новое сообщение пользователя
+    // Create a new user message
     const userMessage: ChatMessage = {
       role: 'user',
       content,
       timestamp: Date.now(),
     };
 
-    // Добавляем сообщение пользователя в состояние
+    // Add the user message to the state
     set((state) => ({
       messages: [...state.messages, userMessage],
     }));
@@ -81,13 +81,13 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     set({ isLoading: true, error: null });
 
     try {
-      // Убедимся, что есть активный чат
+      // Ensure there is an active chat
       if (activeChatId == null) {
         try {
           const created = await chatApi.createChat();
           set({ activeChatId: created.chat_id });
         } catch {
-          // Если не удалось создать, все равно попробуем отправить в активный контекст
+          // If creation fails, still try to send in the active context
         }
       }
 
@@ -106,7 +106,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       }));
     } catch (error) {
       set({
-        error: error instanceof Error ? error.message : 'Произошла ошибка',
+        error: error instanceof Error ? error.message : 'An error occurred',
         isLoading: false,
       });
     }
@@ -128,7 +128,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         messages: mappedMessages.length ? mappedMessages : get().messages,
       });
     } catch {
-      // Если 401 — просто отметим, что активный не загружен, без сброса приветствия
+      // If 401, just mark active not loaded, without resetting greeting
       set({ error: null });
     } finally {
       set({ isLoading: false, hasActiveLoaded: true });
@@ -141,7 +141,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       const items = await chatApi.getHistory(params);
       set({ history: items });
     } catch {
-      // Игнорируем 401, история доступна только авторизованным
+      // Ignore 401, history is only available to authorized users
     } finally {
       set({ isHistoryLoading: false });
     }
@@ -161,7 +161,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       );
       set({ activeChatId: details.id, messages: mappedMessages });
     } catch {
-      set({ error: 'Не удалось открыть чат' });
+      set({ error: 'Failed to open chat' });
     } finally {
       set({ isLoading: false });
     }
@@ -173,21 +173,21 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       const created = await chatApi.createChat();
       set({ activeChatId: created.chat_id });
 
-      // Сбросим сообщения и покажем приветствие
+      // Reset messages and show greeting
       set({
         messages: [
           {
             role: 'assistant',
-            content: 'Новый чат создан. Задайте ваш вопрос о здоровье сердца.',
+            content: 'New chat created. Ask your question about heart health.',
             timestamp: Date.now(),
           },
         ],
       });
 
-      // Обновим историю
+      // Refresh history
       get().loadHistory();
     } catch {
-      set({ error: 'Не удалось создать новый чат' });
+      set({ error: 'Failed to create new chat' });
     } finally {
       set({ isLoading: false });
     }
@@ -198,7 +198,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       !('webkitSpeechRecognition' in window) &&
       !('SpeechRecognition' in window)
     ) {
-      set({ error: 'Голосовой ввод не поддерживается в этом браузере' });
+      set({ error: 'Voice input is not supported in this browser' });
       return;
     }
 
@@ -206,7 +206,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
 
-    recognition.lang = 'ru-RU';
+    recognition.lang = 'en-US';
     recognition.continuous = false;
     recognition.interimResults = false;
 
@@ -220,7 +220,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 
     recognition.onerror = () => {
       set({
-        error: 'Ошибка распознавания речи',
+        error: 'Speech recognition error',
         isListening: false,
       });
     };
@@ -247,7 +247,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     } catch (error) {
       set({
         error:
-          error instanceof Error ? error.message : 'Не удалось удалить историю',
+          error instanceof Error ? error.message : 'Failed to delete history',
       });
     }
   },
@@ -255,11 +255,11 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   deleteChat: async (chatId: number) => {
     try {
       await chatApi.deleteChat(chatId);
-      // Удаляем чат из истории
+      // Remove chat from history
       set((state) => ({
         history: state.history.filter((item) => item.id !== chatId),
       }));
-      // Если удаляемый чат был активным, сбрасываем активный чат
+      // If the deleted chat was active, reset active chat
       const { activeChatId } = get();
       if (activeChatId === chatId) {
         set({
@@ -268,7 +268,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
             {
               role: 'assistant',
               content:
-                'Привет! Я доктор Пульс, ваш персональный AI-кардиолог. Готов ответить на ваши вопросы о здоровье сердца и дать рекомендации на основе ваших данных.',
+                'Hello! I am HeartSync Advisor, your personal AI cardiologist. Ready to answer your questions about heart health and provide recommendations based on your data.',
               timestamp: Date.now(),
             },
           ],
@@ -276,8 +276,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
       }
     } catch (error) {
       set({
-        error:
-          error instanceof Error ? error.message : 'Не удалось удалить чат',
+        error: error instanceof Error ? error.message : 'Failed to delete chat',
       });
     }
   },

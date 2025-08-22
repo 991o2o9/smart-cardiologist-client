@@ -23,7 +23,7 @@
   transition: border-color 0.2s ease;
 
   &:focus-within {
-    border-color: var(--primary, #007bff);
+    border-color: var(--primary, var(--ocean-blue));
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
   }
 }

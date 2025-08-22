@@ -1,0 +1,21 @@
+.lastUpdated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--light-blue);
+  border-radius: 8px;
+  color: var(--gray);
+}
+
+.clockIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.text {
+  margin: 0;
+  color: var(--gray);
+}
