@@ -48,7 +48,7 @@
   .heart {
     position: absolute;
     font-size: 28px;
-    color: rgba(0, 146, 168, 0.6); // теперь бирюзовые
+    color: rgba(0, 146, 168, 0.6);
     animation: heartbeat 3s ease-in-out infinite;
     user-select: none;
 
@@ -106,13 +106,11 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 2rem;
     box-shadow: 0 8px 32px rgba(0, 146, 168, 0.2);
     border: 1px solid rgba(0, 146, 168, 0.3);
   }
 }
 
-// 🔥 Анимации
 @keyframes pulse-flow {
   0% {
     transform: translateX(-120%) scaleX(0.7);

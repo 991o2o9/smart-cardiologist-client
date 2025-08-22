@@ -64,11 +64,13 @@ export const HistoryList: FC<HistoryListProps> = ({ onItemClick }) => {
   if (historyArray.length === 0) {
     return (
       <div className={styles.emptyContainer}>
+        <div className={styles.icon}>📋</div>
         <Typography variant="h3" color="dark">
-          No history found
+          No History Yet
         </Typography>
         <Typography variant="bodyT" color="ocean-blue">
-          You haven&apos;t taken any heart disease risk assessments yet.
+          You haven&apos;t completed a heart disease risk assessment yet. Start
+          by filling out the health questionnaire.
         </Typography>
       </div>
     );

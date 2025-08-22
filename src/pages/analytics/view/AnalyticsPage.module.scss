@@ -33,3 +33,33 @@
     line-height: 1.5;
   }
 }
+
+.noDataContainer {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+  border: 2px dashed var(--gray-light);
+
+  h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 3rem;
+    color: var(--gray-light);
+    margin-bottom: 1rem;
+  }
+}
