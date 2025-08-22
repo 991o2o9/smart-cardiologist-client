@@ -1,7 +1,7 @@
-import React from 'react';
+import type { FC } from 'react';
 import styles from './Loading.module.scss';
 
-const Loading: React.FC = () => {
+export const Loading: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.heart}></div>
@@ -10,5 +10,3 @@ const Loading: React.FC = () => {
     </div>
   );
 };
-
-export default Loading;
