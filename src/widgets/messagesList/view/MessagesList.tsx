@@ -26,22 +26,29 @@ export const MessagesList: FC = () => {
             message={message}
           />
         ))}
-
-        {isLoading && (
+        {!isLoading && (
           <div className={styles.loadingMessage}>
             <div className={styles.avatarContainer}>
               <div className={styles.avatarAssistant}>
-                <Loader2 size={20} color="white" className={styles.spinner} />
+                <Loader2 size={18} color="white" className={styles.spinner} />
               </div>
             </div>
             <div className={styles.loadingBubble}>
-              <Typography variant="bodyT" color="dark">
-                Доктор Пульс печатает...
+              <div className={styles.typingIndicator}>
+                <span className={styles.dot}></span>
+                <span className={styles.dot}></span>
+                <span className={styles.dot}></span>
+              </div>
+              <Typography
+                variant="bodyT"
+                color="dark"
+                className={styles.typingText}
+              >
+                HeartSync Advisor is typing...
               </Typography>
             </div>
           </div>
         )}
-
         {error && (
           <div className={styles.errorMessage}>
             <Typography variant="bodyT" color="error">
@@ -49,7 +56,6 @@ export const MessagesList: FC = () => {
             </Typography>
           </div>
         )}
-
         <div ref={messagesEndRef} />
       </div>
     </div>
