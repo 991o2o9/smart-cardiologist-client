@@ -165,3 +165,89 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+// Стили для парсинга HTML-контента
+.parsedContent {
+  width: 100%;
+}
+
+.paragraph {
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.line {
+  margin-bottom: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.lineText {
+  display: inline;
+}
+
+.boldText {
+  font-weight: var(--fw-bold);
+  color: inherit;
+}
+
+// Стили для таблиц
+.tableWrapper {
+  overflow-x: auto;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-light, #e9ecef);
+  background-color: white;
+}
+
+.parsedTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.4;
+
+  .tableHeader {
+    background-color: var(--bg-secondary, #f8f9fa);
+    border-bottom: 2px solid var(--border-light, #e9ecef);
+  }
+
+  .tableRow {
+    border-bottom: 1px solid var(--border-light, #e9ecef);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:nth-child(even) {
+      background-color: var(--bg-tertiary, #fafbfc);
+    }
+  }
+
+  .tableHeaderCell {
+    padding: 12px 16px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--text-primary, #212529);
+    border-right: 1px solid var(--border-light, #e9ecef);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .tableCell {
+    padding: 10px 16px;
+    text-align: left;
+    color: var(--text-secondary, #6c757d);
+    border-right: 1px solid var(--border-light, #e9ecef);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
