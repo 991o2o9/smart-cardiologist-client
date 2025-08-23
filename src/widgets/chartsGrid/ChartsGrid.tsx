@@ -86,15 +86,21 @@ export const ChartsGrid = ({ chartsData }: ChartsGridProps) => {
         <div className={styles.chartContainer}>
           <PressureChart
             systolic={{
-              avg: chartsData.pressure.avg.systolic,
-              min: chartsData.pressure.min.systolic,
-              max: chartsData.pressure.max.systolic,
+              avg: Math.round(chartsData.pressure.avg.systolic * 100) / 100,
+              min: Math.round(chartsData.pressure.min.systolic * 100) / 100,
+              max: Math.round(chartsData.pressure.max.systolic * 100) / 100,
               trend: chartsData.pressure.trend.systolic,
             }}
             diastolic={{
-              avg: chartsData.pressure.avg.diastolic,
-              min: chartsData.pressure.min.diastolic,
-              max: chartsData.pressure.max.diastolic,
+              avg: chartsData.pressure.avg.diastolic
+                ? Math.round(chartsData.pressure.avg.diastolic * 100) / 100
+                : null,
+              min: chartsData.pressure.min.diastolic
+                ? Math.round(chartsData.pressure.min.diastolic * 100) / 100
+                : null,
+              max: chartsData.pressure.max.diastolic
+                ? Math.round(chartsData.pressure.max.diastolic * 100) / 100
+                : null,
               trend: chartsData.pressure.trend.diastolic,
             }}
           />

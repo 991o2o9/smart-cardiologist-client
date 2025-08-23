@@ -34,7 +34,7 @@ interface RiskChartProps {
 
 export const RiskChart: FC<RiskChartProps> = ({ avg, min, max, trend }) => {
   const generateData = () => {
-    const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const baseValue = avg;
 
     return days.map((_, index) => {
@@ -52,10 +52,10 @@ export const RiskChart: FC<RiskChartProps> = ({ avg, min, max, trend }) => {
   };
 
   const data = {
-    labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
-        label: 'Уровень риска',
+        label: 'Cardiac Risk Score',
         data: generateData(),
         borderColor: getTrendColor(trend),
         backgroundColor: getTrendColor(trend, 0.1),
@@ -88,7 +88,7 @@ export const RiskChart: FC<RiskChartProps> = ({ avg, min, max, trend }) => {
         displayColors: false,
         callbacks: {
           label: function (context: any) {
-            return `Риск: ${context.parsed.y}`;
+            return `Risk Score: ${context.parsed.y}`;
           },
         },
       },

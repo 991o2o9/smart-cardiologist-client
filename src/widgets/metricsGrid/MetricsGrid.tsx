@@ -40,6 +40,11 @@ interface MetricsGridProps {
   metrics: MetricsData;
 }
 
+const formatNumber = (num: number | null, digits = 2) => {
+  if (num === null || num === undefined) return '-';
+  return Number(num.toFixed(digits));
+};
+
 export const MetricsGrid = ({ metrics }: MetricsGridProps) => {
   const getTrendText = (trend: string) => {
     switch (trend) {
@@ -54,6 +59,7 @@ export const MetricsGrid = ({ metrics }: MetricsGridProps) => {
 
   return (
     <div className={styles.metricsGrid}>
+      {/* Risk */}
       <div
         className={styles.metricCard}
         style={{ '--accent-color': 'var(--error)' } as React.CSSProperties}
@@ -72,14 +78,19 @@ export const MetricsGrid = ({ metrics }: MetricsGridProps) => {
           </div>
         </div>
         <Typography variant="h1" className={styles.metricValue}>
-          {metrics.risk.avg}
+          {formatNumber(metrics.risk.avg)}
         </Typography>
         <div className={styles.metricRange}>
-          <Typography variant="smallT">Min: {metrics.risk.min}</Typography>
-          <Typography variant="smallT">Max: {metrics.risk.max}</Typography>
+          <Typography variant="smallT">
+            Min: {formatNumber(metrics.risk.min)}
+          </Typography>
+          <Typography variant="smallT">
+            Max: {formatNumber(metrics.risk.max)}
+          </Typography>
         </div>
       </div>
 
+      {/* Pulse */}
       <div
         className={styles.metricCard}
         style={{ '--accent-color': 'var(--ocean-blue)' } as React.CSSProperties}
@@ -98,14 +109,20 @@ export const MetricsGrid = ({ metrics }: MetricsGridProps) => {
           </div>
         </div>
         <Typography variant="h1" className={styles.metricValue}>
-          {metrics.pulse.avg} <span className={styles.unit}>bpm</span>
+          {formatNumber(metrics.pulse.avg, 1)}{' '}
+          <span className={styles.unit}>bpm</span>
         </Typography>
         <div className={styles.metricRange}>
-          <Typography variant="smallT">Min: {metrics.pulse.min}</Typography>
-          <Typography variant="smallT">Max: {metrics.pulse.max}</Typography>
+          <Typography variant="smallT">
+            Min: {formatNumber(metrics.pulse.min, 1)}
+          </Typography>
+          <Typography variant="smallT">
+            Max: {formatNumber(metrics.pulse.max, 1)}
+          </Typography>
         </div>
       </div>
 
+      {/* Pressure */}
       <div
         className={styles.metricCard}
         style={{ '--accent-color': 'var(--dark-blue)' } as React.CSSProperties}
@@ -124,15 +141,15 @@ export const MetricsGrid = ({ metrics }: MetricsGridProps) => {
           </div>
         </div>
         <Typography variant="h1" className={styles.metricValue}>
-          {metrics.pressure.avg.systolic}{' '}
+          {formatNumber(metrics.pressure.avg.systolic)}{' '}
           <span className={styles.unit}>mmHg</span>
         </Typography>
         <div className={styles.metricRange}>
           <Typography variant="smallT">
-            Min: {metrics.pressure.min.systolic}
+            Min: {formatNumber(metrics.pressure.min.systolic)}
           </Typography>
           <Typography variant="smallT">
-            Max: {metrics.pressure.max.systolic}
+            Max: {formatNumber(metrics.pressure.max.systolic)}
           </Typography>
         </div>
       </div>

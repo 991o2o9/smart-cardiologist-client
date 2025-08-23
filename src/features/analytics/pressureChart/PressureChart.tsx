@@ -158,7 +158,9 @@ export const PressureChart: FC<PressureChartProps> = ({
         displayColors: true,
         callbacks: {
           label: function (context: any) {
-            return `${context.dataset.label}: ${context.parsed.y} mmHg`;
+            return `${context.dataset.label}: ${Math.round(
+              context.parsed.y,
+            )} mmHg`;
           },
         },
       },
@@ -197,7 +199,7 @@ export const PressureChart: FC<PressureChartProps> = ({
             weight: 500,
           },
           callback: function (value: any) {
-            return `${value} mmHg`;
+            return `${Math.round(value)} mmHg`;
           },
         },
       },
