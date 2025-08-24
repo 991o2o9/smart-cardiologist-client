@@ -163,7 +163,7 @@ export const HistoryResult: FC<HistoryResultProps> = ({
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('ru-RU', {
+    return date.toLocaleDateString('en-EN', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
